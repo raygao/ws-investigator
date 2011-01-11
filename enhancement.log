@@ -1,0 +1,1 @@
+June 29, changed column from AdminFolderID (int) to the direct path of the Admin Folder for various objects (string)

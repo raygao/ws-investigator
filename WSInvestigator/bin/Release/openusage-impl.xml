@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>openusage-impl</name>
+    </assembly>
+    <members>
+        <member name="T:com.plumtree.analytics.openusage.impl.ASEventImpl">
+            <summary>
+            Created on March 30, 2006
+            </summary>
+            <author>JamesHa</author>
+            <author>SeanLi</author>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.IASEvent">
+            <summary>
+            This is the base interface for all Analytics Events
+            </summary>
+            <author>JamesHa</author>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.init(System.String)">
+            <summary>
+            Initializes the ASEvent object with the given Event Name
+            </summary>
+            <param name="eventName">the event name (NULL is not allowed)</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.serialize">
+            <summary>
+            Serializes this event and returns the serialized byte array
+            </summary>
+            <returns>the serialized byte[] array (a NULL value indicates a serialization error)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.deserialize(System.Byte[])">
+            <summary>
+            Deserializes a byte array representing a serialized event
+             and returns the deserialized IASEvent object
+            </summary>
+            <param name="bytes">a byte array representing a serialized event (NULL is not allowed)</param>
+            <returns>the deserialized IASEvent object (a NULL value indicates a serialization error)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.setValue(System.String,System.Object)">
+            <summary>
+            Sets a name/value property for this event
+            </summary>
+            <param name="name">the property name (NULL is not allowed)</param>
+            <param name="value">the property value (NULL is not allowed)</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.getValue(System.String)">
+            <summary>
+            Gets the value of the name/value property
+            </summary>
+            <param name="name">the property name (NULL is not allowed)</param>
+            <returns>the property Object (a NULL value indicates that a property with the given name does not exist)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.sendEvent">
+            <summary>
+            Sends this event using the current configuration settings.
+             <p />
+             If the configuration was set using one of the setConfig methods,
+             it will use this to transmit the event. Otherwise, it will use 
+             the configuration specified in PortalAnalyticsConfig.xml
+            </summary>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.getEventType">
+            <summary>
+            Returns the Event Type
+            </summary>
+            <returns>the Event Type (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.getVersion">
+            <summary>
+            Returns the Serializer Version
+            </summary>
+            <returns>the serializer Version (a NULL value indicates an event that was never serialized)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.setConfig(com.plumtree.openfoundation.util.XPHashtable)">
+            <summary>
+            Sets the openusage configuration using the given properties
+            </summary>
+            <param name="properties">a hashtable containing the properties to set (NULL is not allowed)</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASEvent.setConfig(System.String,System.String)">
+            <summary>
+            Sets the openusage configuration using the property file
+             at the given location and name
+            </summary>
+            <param name="fileLocation">the directory where the file is located (NULL is not allowed)</param>
+            <param name="fileName">the name of the file (NULL is not allowed)</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.serialize">
+            <summary>
+            Serializes this event into a byte array
+            
+             Serialization format : HEAD | FIELD(s)
+             HEAD : Version | Event Type ( length | value ) | # of Fields
+             FIELD : Name (length | value) | Type | Value (length | value)
+            
+             # HEAD bytes = 4 | ( 4 | A ) | 4 = 12 + A
+             # FIELD bytes = (4 | 4 | B ) | (4 | 4 | C) = 14 + B + C
+            
+             (A = length of Event Type)
+             (B = length of Field name)
+             (C = length of Field value)
+            
+             Serialize event object into byte array to transmit by PMB
+             follows Java Data Type specification
+             byte : Byte-length integer 8-bit two's complement
+             int : Integer 32-bit two's complement
+             long : Long integer 64-bit two's complement
+             float : Single-precision floating point 32-bit IEEE 754
+             double : Double-precision floating point 64-bit IEEE 754 (other types)
+            </summary>
+            <returns>byte[] serialized byte array</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.setConfig(com.plumtree.openfoundation.util.XPHashtable)">
+            <summary>
+            Sets the openusage configuration using the given properties
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.setConfig(System.String,System.String)">
+            <summary>
+            Sets the openusage configuration using the property file
+             at the given location and name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.loadConfig">
+            <summary>
+            Read settting from config file : PortalAnalyticsConfig.xml
+             To send message requires config file exists and unicast field is set
+            </summary>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.loadConfig(com.plumtree.openfoundation.util.XPFileProperty)">
+            <summary>
+            Read settting from config file : PortalAnalyticsConfig.xml
+             To send message requires config file exists and unicast field is set
+             If fileProperty is passed in, then use it instead of search for one
+            </summary>
+            <param name="fileProperty"></param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:com.plumtree.analytics.openusage.impl.ASEventImpl.initializeUnicastIP(System.String,System.String,System.Boolean)" -->
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.sendEvent">
+            <summary>
+            To send any event to message bus
+            </summary>
+            <param name="event"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.deserialize(System.Byte[])">
+            <summary>
+            Deserialize the byte array into an ASEvent object
+            </summary>
+            <param name="byteArr">in byte[]</param>
+            <returns>UTEvent</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.ToString">
+            <summary>
+            Dumps all attributes
+            </summary>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.getEventSourceName(System.Int32)">
+            <summary>
+            Returns the name of the event source
+            </summary>
+            <param name="eventSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.getTimestamp">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.setTimestamp(System.Int64)">
+            <param name="l"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.getEventType">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.setEventType(System.String)">
+            <param name="integer"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.getVersion">
+            <param name="version">The version to set.</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.setVersion(System.String)">
+            <param name="version">The version to set.</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.getFields">
+            <returns>Returns the fields as a Hashtable</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.getValue(System.String)">
+            <param name="name"></param>
+            <returns>Returns the field with the given name.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.setValue(System.String,System.Object)">
+            <summary>
+            Sets a new event field of any type with
+             the given name
+            </summary>
+            <param name="name"></param>
+            <param name="obj"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.ASEventImpl.Main(System.String[])">
+            <summary>
+            Quick debug and test runnable program
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.impl.ASFloat">
+            <summary>
+            Wrapper for Float values.  Float values are deserialized to this object.
+             Because we serialize Float values to Strings and there is no jumpable
+             way to converting a String to a Float, we can only return the value
+             as a String.
+             
+             Created on March 30, 2006
+            </summary>
+            <author>JamesHa</author>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.impl.LoggerImpl">
+            <summary>
+            Logger Implementation for G6
+             
+             Created on March 30, 2006
+            </summary>
+            <author>JamesHa</author>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.LoggerImpl.Debug(System.String)">
+            <summary>
+            Log a Debug message
+            </summary>
+            <param name="message"></param>
+            <param name="logLevel"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.LoggerImpl.Info(System.String)">
+            <summary>
+            Log a Debug message
+            </summary>
+            <param name="message"></param>
+            <param name="logLevel"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.LoggerImpl.Warn(System.String)">
+            <summary>
+            Log a Debug message
+            </summary>
+            <param name="message"></param>
+            <param name="logLevel"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.LoggerImpl.Error(System.String)">
+            <summary>
+            Log a Debug message
+            </summary>
+            <param name="message"></param>
+            <param name="logLevel"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.LoggerImpl.logConsole(System.String,System.String)">
+            <summary>
+            Log to the Console
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.impl.PMBImpl">
+            <summary>
+            PMB Implementation for G6
+             
+             Created on March 30, 2006
+            </summary>
+            <author>JamesHa</author>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.PMBImpl.sendEvent(System.String,System.Byte[],System.Boolean)">
+            <summary>
+            Send the message to the PMB using the destination String
+            </summary>
+            <param name="unicastIP">the unicast IP string</param>
+            <param name="msg">the msg as a byte array</param>
+            <param name="isUnicast">is unicast</param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.impl.Util">
+            <summary>
+            Utility methods
+             
+             Created Oct 1, 2004
+            </summary>
+            <author>SeanLi</author>
+            <author>JamesHa</author>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.writeInteger(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of an Integer to the buffer starting at offset
+            </summary>
+            <param name="anInteger"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns>new offset</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.writeFloat(System.Single,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of a Float to the buffer starting at offset
+            </summary>
+            <param name="aFloat"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns>new offset</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.writeDouble(System.Double,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of a Float to the buffer starting at offset
+            </summary>
+            <param name="aFloat"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns>new offset</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.writeLong(System.Int64,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of a Long to the buffer starting at offset
+            </summary>
+            <param name="aLong"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns>new offset</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.writeString(System.String,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of a String to the buffer starting at offset
+            </summary>
+            <param name="fValue"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns>new offset</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.readString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads a string from the byte array
+            </summary>
+            <param name="b"></param>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.readObject(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <param name="b"></param>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.stringToBytes(System.String)">
+            <summary>
+            convert string to byte array in UTF-8
+            </summary>
+            <param name="_str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.impl.Util.writeField(System.Int32,System.String,System.Object,System.Byte[])">
+            <summary>
+            Writes a name/value field to the byte buffer array
+            
+             Serialization format :
+            
+             Name (length | value) | Type | Value (length | value)
+            
+             # bytes = (4 | 4 | B ) | (4 | 4 | C) = 14 + B + C
+            
+             (A = length of Event Type)
+             (B = length of Field name)
+             (C = length of Field value)
+            </summary>
+            <param name="offset">starting index in the buffer</param>
+            <param name="fName">name of the field</param>
+            <param name="fValue">value of the field</param>
+            <param name="buffer">the byte buffer array</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

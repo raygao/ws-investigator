@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>openusage</name>
+    </assembly>
+    <members>
+        <member name="T:com.plumtree.usagetracker.openusage.CustomEvent">
+            <summary>
+            Created on November 30, 2005
+            </summary>
+            <author>JamesHa</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.UTEvent">
+            <summary>
+            Colossus v1 created on Sep 24, 2004
+              Colossus v2 modified on June 10, 2005
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.utSerialize">
+            <summary>
+            Serializes this event into a byte array
+            
+             Serialization format : HEAD | FIELD(s)
+             HEAD : Version | Event Type ( length | value ) | # of Fields
+             FIELD : Name (length | value) | Type | Value (length | value)
+            
+             # HEAD bytes = 4 | ( 4 | A ) | 4 = 12 + A
+             # FIELD bytes = (4 | 4 | B ) | (4 | 4 | C) = 14 + B + C
+            
+             (A = length of Event Type)
+             (B = length of Field name)
+             (C = length of Field value)
+            
+             Serialize event object into byte array to transmit by PMB
+             follows Java Data Type specification
+             byte : Byte-length integer 8-bit two's complement
+             int : Integer 32-bit two's complement
+             long : Long integer 64-bit two's complement
+             float : Single-precision floating point 32-bit IEEE 754
+             double : Double-precision floating point 64-bit IEEE 754 (other types)
+            </summary>
+            <returns>byte[] serialized byte array</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:com.plumtree.usagetracker.openusage.UTEvent.setConfig(System.Boolean,System.String,System.Boolean)" -->
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.loadConfig">
+            <summary>
+            Read settting from config file : PortalAnalyticsConfig.xml
+             To send message requires config file exists and unicast field is set
+            </summary>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.check2send(System.String,System.Int32)">
+            <param name="eventType"></param>
+            <param name="utSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.utSendEvent(com.plumtree.usagetracker.openusage.UTEvent)">
+            <summary>
+            To send any event to message bus
+            </summary>
+            <param name="event"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.utDeserialize(System.Byte[])">
+            <summary>
+            Deserialize the byte array into a UTEvent object
+            </summary>
+            <param name="byteArr">in byte[]</param>
+            <returns>UTEvent</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.ToString">
+            <summary>
+            dump all UTEvent attributes to String separated by tab
+            </summary>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getEventSourceName(System.Int32)">
+            <summary>
+            Returns the name of the event source
+            </summary>
+            <param name="eventSource"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getTimestamp">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getUserId">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setTimestamp(System.Int64)">
+            <param name="l"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setUserId(System.Int32)">
+            <param name="i"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getEventType">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setEventType(System.String)">
+            <param name="integer"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.isGwPage">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setGwPage(System.Boolean)">
+            <param name="boolean">bGwPage</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.isErrPage">
+            <returns>true if it's error page</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setErrPage(System.Boolean)">
+            <param name="boolean">bErrPage</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.isCollabDoc">
+            <returns>true if it's collabolation document view</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setCollabDoc(System.Boolean)">
+            <param name="boolean">bErrPage</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.isSpellCorrect">
+            <returns>true if search key word spells correct</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setSpellCorrect(System.Boolean)">
+            <param name="boolean">bSpellCorrect</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.isBestBets">
+            <returns>true if search key word spells correct</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setBestBets(System.Boolean)">
+            <param name="boolean">bSpellCorrect</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getFlags">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setFlags(System.Int32)">
+            <param name="flags"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getEventSource">
+            <returns>Returns the eventSource.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setEventSource(System.Int32)">
+            <param name="eventSource">The eventSource to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getVersion">
+            <returns>Returns the version.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setVersion(System.Int32)">
+            <param name="version">The version to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setVersion(System.String)">
+            <param name="version">The version to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getBrowser">
+            <returns>browser</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setBrowser(System.String)">
+            <param name="browser"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getClientAddress">
+            <returns>client address</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setClientAddress(System.String)">
+            <param name="client">address</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getCommunityId">
+            <returns>community id</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setCommunityId(System.Int32)">
+            <param name="community">id</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getPageId">
+            <returns>page id</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setPageId(System.Int32)">
+            <param name="page">id</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getPortletId">
+            <returns>portlet id</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setPortletId(System.Int32)">
+            <param name="portlet">id</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getReferrer">
+            <returns>referer</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setReferer(System.String)">
+            <param name="referer"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getResponseTime">
+            <returns>response time</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setResponseTime(System.Int32)">
+            <param name="response">time</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getUrl">
+            <returns>url.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setUrl(System.String)">
+            <param name="url"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getDocId">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setDocId(System.Int32)">
+            <param name="id"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getQueryId">
+            <returns>Returns the queryId.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setQueryId(System.String)">
+            <param name="queryId">The queryId to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getSearchRank">
+            <returns>Returns the searchRank.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setSearchRank(System.Int32)">
+            <param name="searchRank">The searchRank to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getSearchString">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setSearchString(System.String)">
+            <param name="str"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getEndRange">
+            <returns>Returns the endRange.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setEndRange(System.Int32)">
+            <param name="endRange">The endRange to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getStartRange">
+            <returns>Returns the startRange.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setStartRange(System.Int32)">
+            <param name="startRange">The startRange to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getTotalMatches">
+            <returns>Returns the totalMatches.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setTotalMatches(System.Int32)">
+            <param name="totalMatches">The totalMatches to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getCategoryFilter">
+            <returns>Returns the categoryFilter.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setCategoryFilter(System.String)">
+            <param name="categoryFilter">The categoryFilter to set.</param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getFields">
+            <returns>Returns the fields as a Hashtable</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getField(System.String)">
+            <param name="name"></param>
+            <returns>Returns the field with the given name.</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setField(System.String,System.Object)">
+            <summary>
+            Sets a new event field of any type with
+             the given name
+            </summary>
+            <param name="name"></param>
+            <param name="obj"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setField(System.String,System.Int32)">
+            <summary>
+            Sets a new event field of type Integer with
+             the given name
+            </summary>
+            <param name="name"></param>
+            <param name="obj"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setField(System.String,System.Int64)">
+            <summary>
+            Sets a new event field of type Long with
+             the given name
+            </summary>
+            <param name="name"></param>
+            <param name="obj"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setField(System.String,System.String)">
+            <summary>
+            Sets a new event field of type String with
+             the given name
+            </summary>
+            <param name="name"></param>
+            <param name="obj"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.setField(System.String,com.plumtree.openfoundation.util.XPDateTime)">
+            <summary>
+            Sets a new event field of type XPDateTime with
+             the given name
+            </summary>
+            <param name="name"></param>
+            <param name="obj"></param>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getNonNullLongValue(System.Int64)">
+            <summary>
+            Returns the orignal Long value or -1 if null
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getNonNullIntegerValue(System.Int32)">
+            <summary>
+            Returns the orignal Integer value or -1 if null
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.getNonNullStringValue(System.String)">
+            <summary>
+            Returns the orignal String value or "" if null
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.UTEvent.Main(System.String[])">
+            <summary>
+            Quick debug and test runnable program
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.DirViewEvent">
+            <author>seanl</author>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.DirViewEvent.getFolderId">
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.DirViewEvent.setFolderId(System.Int32)">
+            <param name="id"></param>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.DocViewEvent">
+            <summary>
+            Colossus v1 Created on Sep 27, 2004
+              Colossus v2 Created on June 10, 2004
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.GenericEvent">
+            <summary>
+            Colossus v1 Created on Sep 27, 2004
+              Colossus v2 Created on June 10, 2004
+            </summary>
+            <author>seanl</author>
+            <deprecated>use CustomEvent instead</deprecated>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.LoginEvent">
+            <summary>
+            Colossus v1 Created on Sep 27, 2004
+              Colossus v2 Created on June 10, 2004
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.LogoffEvent">
+            <author>seanl</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.PageViewEvent">
+            <summary>
+            Colossus v1 Created on Sep 27, 2004
+              Colossus v2 Created on June 10, 2004
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.PortletUseEvent">
+            <summary>
+            Colossus v1 Created on Sep 27, 2004
+              Colossus v2 Created on June 10, 2004
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.PortletViewEvent">
+            <summary>
+            Colossus v1 Created on Sep 27, 2004
+              Colossus v2 Created on June 10, 2004
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.SearchEvent">
+            <summary>
+            Colossus v1 Created on Sep 27, 2004
+              Colossus v2 Created on June 10, 2004
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.SearchResultEvent">
+            <summary>
+            Colossus v1 Created on Sep 27, 2004
+              Colossus v2 Created on June 10, 2004
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="T:com.plumtree.usagetracker.openusage.Util">
+            <summary>
+            Created Oct 1, 2004
+            </summary>
+            <author>seanl</author>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.writeInt(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of an Integer to the buffer starting at offset
+            </summary>
+            <param name="_integer"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <deprecated>as of 2.0 use writeInteger instead</deprecated>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.writeInteger(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of an Integer to the buffer starting at offset
+            </summary>
+            <param name="_integer"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns>new offset</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.writeLong(System.Int64,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of a Long to the buffer starting at offset
+            </summary>
+            <param name="_long"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns>new offset</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.writeString(System.String,System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes of a String to the buffer starting at offset
+            </summary>
+            <param name="fValue"></param>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <returns>new offset</returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.readInt(System.Byte[],System.Int32)">
+            <deprecated>as of 2.0 use readInteger instead</deprecated>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.bytesToString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads a string from the byte array
+            </summary>
+            <param name="b"></param>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <returns></returns>
+            <deprecated>as of 2.0 use readString instead</deprecated>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.readString(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads a string from the byte array
+            </summary>
+            <param name="b"></param>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.readObject(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <param name="b"></param>
+            <param name="offset"></param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.stringToBytes(System.String)">
+            <summary>
+            convert string to byte array in UTF-8
+            </summary>
+            <param name="_str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.usagetracker.openusage.Util.writeField(System.Int32,System.String,System.Object,System.Byte[])">
+            <summary>
+            Writes a name/value field to the byte buffer array
+            
+             Serialization format :
+            
+             Name (length | value) | Type | Value (length | value)
+            
+             # bytes = (4 | 4 | B ) | (4 | 4 | C) = 14 + B + C
+            
+             (A = length of Event Type)
+             (B = length of Field name)
+             (C = length of Field value)
+            </summary>
+            <param name="offset">starting index in the buffer</param>
+            <param name="fName">name of the field</param>
+            <param name="fValue">value of the field</param>
+            <param name="buffer">the byte buffer array</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

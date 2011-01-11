@@ -1,0 +1,819 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>openusage-api</name>
+    </assembly>
+    <members>
+        <member name="T:com.plumtree.analytics.openusage.ASEventConstants">
+            <summary>
+            Factory for creating different Analytics events.
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.ASEventDelegate">
+            <summary>
+            ASEvent Delegate object.  Delegates implementation to an Analytics 
+             concrete implementation class.
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.init(System.String)">
+            <summary>
+            Initializes the ASEvent object
+            </summary>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.serialize">
+            <summary>
+            Serializes this event and returns the serialized byte array
+            </summary>
+            <returns>byte[] array</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.deserialize(System.Byte[])">
+            <summary>
+            Deserializes a byte array representing a serialized event
+             and returns the deserialized ASEvent object
+            </summary>
+            <param name="bytes"></param>
+            <returns>ASEvent</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.setValue(System.String,System.Object)">
+            <summary>
+            Sets a name/value property for this event
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.getValue(System.String)">
+            <summary>
+            Gets the value of the name/value property
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.sendEvent">
+            <summary>
+            Sends this event
+            </summary>
+            <throws>ASEventException</throws>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.getEventType">
+            <summary>
+            Returns the Event Type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.getVersion">
+            <summary>
+            Returns the Event Type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.setConfig(com.plumtree.openfoundation.util.XPHashtable)">
+            <summary>
+            Sets the openusage configuration using the given properties
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventDelegate.setConfig(System.String,System.String)">
+            <summary>
+            Sets the openusage configuration using the property file
+             at the given location and name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.ASEventFactory">
+            <summary>
+            Factory class for creating different Analytics events.
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:com.plumtree.analytics.openusage.ASEventFactory.setConfig(System.String,System.String)" -->
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.setConfig(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Sets the openusage configuration using the given values.  This 
+             only needs to be called once per java process.
+            </summary>
+            <param name="destinationHost">the destination host machine to send events (this value is ignored and can be NULL if <c>isUnicast</c> parameter is set to false)</param>
+            <param name="destinationPort">the destination host port to send events (this value is ignored if <c>isUnicast</c> parameter is set to false)</param>
+            <param name="isUnicast">if true use UDP Unicast to send events</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.setConfig(System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Sets the openusage configuration using the given values.  This 
+             only needs to be called once per java process.
+            </summary>
+            <param name="destinationHost">the destination host machine to send events (this value is ignored and can be NULL if <i>isUnicast</i> parameter is set to false)</param>
+            <param name="destinationPort">the destination host port to send events (this value is ignored if <i>isUnicast</i> parameter is set to false)</param>
+            <param name="loggingLevel">the logging level</param>
+            <param name="enableConsoleLogging">enable console logging of events</param>
+            <param name="isUnicast">if true use UDP Unicast to send events</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createManagedEvent(System.String)">
+            <summary>
+            Creates a Managed Event with the registered event name.
+            </summary>
+            <param name="eventName">the event name registered for this event (NULL is not allowed)</param>
+            <returns>IManagedEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createDirViewEvent">
+            <summary>
+            Creates a Directory View Event
+            </summary>
+            <returns>IDirViewEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createDocViewEvent">
+            <summary>
+            Creates a Document View Event
+            </summary>
+            <returns>IDocViewEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createLoginEvent">
+            <summary>
+            Creates a Login Event
+            </summary>
+            <returns>ILoginEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createLogoffEvent">
+            <summary>
+            Creates a Log Off Event
+            </summary>
+            <returns>ILogoffEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createPageViewEvent">
+            <summary>
+            Creates a Page View Event
+            </summary>
+            <returns>IPageViewEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createPortletUseEvent">
+            <summary>
+            Creates a Portlet Use Event
+            </summary>
+            <returns>IPortletUseEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createPortletViewEvent">
+            <summary>
+            Creates a Portlet View Event
+            </summary>
+            <returns>IPortletViewEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createSearchEvent">
+            <summary>
+            Creates a Search Event
+            </summary>
+            <returns>ISearchEvent object (will never be NULL)</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASEventFactory.createSearchResultEvent">
+            <summary>
+            Creates a Search Result Event
+            </summary>
+            <returns>ISearchResultEvent object (will never be NULL)</returns>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.ASPortalEventDelegate">
+            <summary>
+            The delegate for ASPortalEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.IASPortalEvent">
+            <summary>
+            Defines an event generated from the Portal
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getEventSource">
+            <summary>
+            Returns the Event Source
+            </summary>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#EVENT_SOURCE_PORTAL"></seealso>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#EVENT_SOURCE_PEI"></seealso>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#EVENT_SOURCE_SERVLET_FILTER"></seealso>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#EVENT_SOURCE_HTTP_MODULE"></seealso>
+            <returns>the Event Source</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setEventSource(System.Int32)">
+            <summary>
+            Sets the Event Source
+            </summary>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#EVENT_SOURCE_PORTAL"></seealso>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#EVENT_SOURCE_PEI"></seealso>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#EVENT_SOURCE_SERVLET_FILTER"></seealso>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#EVENT_SOURCE_HTTP_MODULE"></seealso>
+            <param name="eventSource">the Event Source</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getBrowser">
+            <summary>
+            Returns the Browser
+            </summary>
+            <returns>the Browser</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setBrowser(System.String)">
+            <summary>
+            Sets the Browser
+            </summary>
+            <param name="browser">the Browser</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getClientAddress">
+            <summary>
+            Returns the Client Address
+            </summary>
+            <returns>the client address</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setClientAddress(System.String)">
+            <summary>
+            Sets the Client Address
+            </summary>
+            <param name="clientAddress">the client address</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getCommunityId">
+            <summary>
+            Returns the community ID
+            </summary>
+            <returns>community ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setCommunityId(System.Int32)">
+            <summary>
+            Sets the community ID
+            </summary>
+            <param name="communityID">the community ID</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getPageId">
+            <summary>
+            Returns the page ID
+            </summary>
+            <returns>the page ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setPageId(System.Int32)">
+            <summary>
+            Sets the page ID
+            </summary>
+            <param name="pageID">the page ID</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getPortletId">
+            <summary>
+            Returns the portlet ID
+            </summary>
+            <returns>the portlet ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setPortletId(System.Int32)">
+            <summary>
+            Sets the portlet ID
+            </summary>
+            <param name="portletID">the portlet ID</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getReferrer">
+            <summary>
+            Returns the referer
+            </summary>
+            <returns>the referer</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setReferer(System.String)">
+            <summary>
+            Sets the referer
+            </summary>
+            <param name="referer">the referer</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getResponseTime">
+            <summary>
+            Returns the response time (in milliseconds)
+            </summary>
+            <returns>the response time</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setResponseTime(System.Int32)">
+            <summary>
+            Sets the response time (in milliseconds)
+            </summary>
+            <param name="responseTime">the response time</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getUserId">
+            <summary>
+            Returns the Portal User ID
+            </summary>
+            <returns>the User ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setUserId(System.Int32)">
+            <summary>
+            Sets the Portal User ID
+            </summary>
+            <param name="userId">the Portal User ID</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.getUrl">
+            <summary>
+            Returns the event url
+            </summary>
+            <returns>the event url</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IASPortalEvent.setUrl(System.String)">
+            <summary>
+            Sets the event url
+            </summary>
+            <param name="url">the event url</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getBrowser">
+            <summary>
+            Returns the Browser
+            </summary>
+            <returns>String browser</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setBrowser(System.String)">
+            <summary>
+            Sets the Browser
+            </summary>
+            <param name="browser"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getClientAddress">
+            <summary>
+            Returns the Client Address
+            </summary>
+            <returns>String clientAddress</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setClientAddress(System.String)">
+            <param name="client">address</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getCommunityId">
+            <returns>community id</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setCommunityId(System.Int32)">
+            <param name="community">id</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getEventSource">
+            <summary>
+            Returns the Event Source
+            </summary>
+            <returns>Integer eventSource.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setEventSource(System.Int32)">
+            <summary>
+            Sets the Event Source
+            </summary>
+            <param name="Integer">eventSource</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getPageId">
+            <returns>page id</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setPageId(System.Int32)">
+            <param name="page">id</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getPortletId">
+            <returns>portlet id</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setPortletId(System.Int32)">
+            <param name="portlet">id</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getReferrer">
+            <returns>referer</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setReferer(System.String)">
+            <param name="referer"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getResponseTime">
+            <returns>response time</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setResponseTime(System.Int32)">
+            <param name="response">time</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getUrl">
+            <returns>url.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setUrl(System.String)">
+            <param name="url"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.getUserId">
+            <returns>userId.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ASPortalEventDelegate.setUserId(System.Int32)">
+            <param name="userId"></param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.DirViewEventDelegate">
+            <summary>
+            Delegate for DirViewEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.IDirViewEvent">
+            <summary>
+            Defines an event generated when a Directory is viewed
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IDirViewEvent.getFolderId">
+            <summary>
+            Returns the folder ID
+            </summary>
+            <returns>the folder ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IDirViewEvent.setFolderId(System.Int32)">
+            <summary>
+            Sets the folder ID
+            </summary>
+            <param name="folderID">the folder ID</param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.DocViewEventDelegate">
+            <summary>
+            Delegate for DocViewEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.IDocViewEvent">
+            <summary>
+            Defines an event generated when a Document is viewed
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IDocViewEvent.getDocId">
+            <summary>
+            Returns the document ID
+            </summary>
+            <returns>the document ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IDocViewEvent.setDocId(System.Int32)">
+            <summary>
+            Sets the document ID
+            </summary>
+            <param name="docID">the document ID</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IDocViewEvent.getQueryId">
+            <summary>
+            Returns the Query ID
+            </summary>
+            <returns>the Query ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IDocViewEvent.setQueryId(System.String)">
+            <summary>
+            Sets the Query ID
+            </summary>
+            <param name="queryId">the Query ID</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IDocViewEvent.isCollabDoc">
+            <summary>
+            Determines if this is a Collaboration document
+            </summary>
+            <returns>true if it's a Collabolation document</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IDocViewEvent.setCollabDoc(System.Boolean)">
+            <summary>
+            Sets this as a Collaboration document
+            </summary>
+            <param name="isCollabDoc">is a Collaboration document</param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.ILoginEvent">
+            <summary>
+            Defines an event generated when a user logs into the Portal
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.ILogoffEvent">
+            <summary>
+            Defines an event generated when a user logs off the Portal
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.IManagedEvent">
+            <summary>
+            Defines an event that has been registered and managed by
+             the Analytics server.  A ManagedEvent is defined by the event
+             name that was given when the event was registered.  Each of
+             the event's facts can be set using one of the typed set methods
+             and passing the name of the fact and it's value.
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.setFact(System.String,System.String)">
+            <summary>
+            Set a String fact value
+            </summary>
+            <param name="factName">the name of the fact</param>
+            <param name="value">the value to set</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.setFact(System.String,System.Int32)">
+            <summary>
+            Set an Integer fact value
+            </summary>
+            <param name="factName">the name of the fact</param>
+            <param name="value">the value to set</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.setFact(System.String,System.Int64)">
+            <summary>
+            Set a Long fact value
+            </summary>
+            <param name="factName">the name of the fact</param>
+            <param name="value">the value to set</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.setFact(System.String,System.Single)">
+            <summary>
+            Set a Float fact value
+            </summary>
+            <param name="factName">the name of the fact</param>
+            <param name="value">the value to set</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.setFact(System.String,System.Double)">
+            <summary>
+            Set a Double fact value
+            </summary>
+            <param name="factName">the name of the fact</param>
+            <param name="value">the value to set</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.setFact(System.String,com.plumtree.openfoundation.util.XPDateTime)">
+            <summary>
+            Set a Date fact value
+            </summary>
+            <param name="factName">the name of the fact</param>
+            <param name="value">the value to set</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.setLongAsDateFact(System.String,System.Int64)">
+            <summary>
+            Set a Date fact using a Long value
+            </summary>
+            <param name="factName">the name of the fact</param>
+            <param name="value">the value to set</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.getFact(System.String)">
+            <summary>
+            Get the value of the fact as an Object
+            </summary>
+            <param name="factName">the name of the fact</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.getUserId">
+            <summary>
+            Returns the User ID
+            </summary>
+            <returns>the User ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IManagedEvent.setUserId(System.Int32)">
+            <summary>
+            Sets the User ID
+            </summary>
+            <param name="userId">the User ID</param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.IPageViewEvent">
+            <summary>
+            Defines an event generated when a Page is viewed
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.IPortletUseEvent">
+            <summary>
+            Defines an event generated when a Portlet is used
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.IPortletViewEvent">
+            <summary>
+            Defines an event generated when a Portlet is viewed
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IPortletViewEvent.isGwPage">
+            <summary>
+            Determines if this is a gateway page
+            </summary>
+            <returns>true if it's a gateway page</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IPortletViewEvent.setGwPage(System.Boolean)">
+            <summary>
+            Set this is a gateway page
+            </summary>
+            <param name="bGwPage">is gateway page</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IPortletViewEvent.isErrPage">
+            <summary>
+            Determines if this is an error page
+            </summary>
+            <returns>true if it's error page</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.IPortletViewEvent.setErrPage(System.Boolean)">
+            <summary>
+            Set this as an error page
+            </summary>
+            <param name="boolean">bErrPage is error page</param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.ISearchEvent">
+            <summary>
+            Defines an event generated when a Search is executed
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchEvent.getSearchRank">
+            <summary>
+            Returns the search rank
+            </summary>
+            <returns>the search rank</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchEvent.setSearchRank(System.Int32)">
+            <summary>
+            Sets the search rank
+            </summary>
+            <param name="searchTank">the search rank</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchEvent.getQueryId">
+            <summary>
+            Returns the Query ID
+            </summary>
+            <returns>the Query ID</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchEvent.setQueryId(System.String)">
+            <summary>
+            Sets the Query ID
+            </summary>
+            <param name="queryId">the Query ID</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchEvent.getSearchString">
+            <summary>
+            Returns the search string
+            </summary>
+            <returns>the search string</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchEvent.setSearchString(System.String)">
+            <summary>
+            Sets the search string
+            </summary>
+            <param name="searchString">the search string</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchEvent.getSearchType">
+            <summary>
+            Returns the search type
+            </summary>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#BASIC_SEARCH_TYPE"></seealso>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#ADVANCED_SEARCH_TYPE"></seealso>
+            <returns>the search type</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchEvent.setSearchType(System.String)">
+            <summary>
+            Sets the search type
+            </summary>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#BASIC_SEARCH_TYPE"></seealso>
+            <seealso cref="!:com.plumtree.analytics.openusage.ASEventConstants#ADVANCED_SEARCH_TYPE"></seealso>
+            <param name="searchType">the search type</param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.ISearchResultEvent">
+            <summary>
+            Defines an event generated when a Search Result is generated
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.getEndRange">
+            <summary>
+            Returns the End Range
+            </summary>
+            <returns>endRange.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.setEndRange(System.Int32)">
+            <summary>
+            Sets the End Range
+            </summary>
+            <param name="endRange"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.getStartRange">
+            <summary>
+            Returns the Start Range
+            </summary>
+            <returns>startRange.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.setStartRange(System.Int32)">
+            <summary>
+            Sets the Start Range
+            </summary>
+            <param name="startRange"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.getTotalMatches">
+            <summary>
+            Returns the Total Matches
+            </summary>
+            <returns>totalMatches.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.setTotalMatches(System.Int32)">
+            <summary>
+            Sets the Total Matches
+            </summary>
+            <param name="totalMatches"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.getQueryId">
+            <summary>
+            Returns the Query ID
+            </summary>
+            <returns>queryId.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.setQueryId(System.String)">
+            <summary>
+            Sets the Query ID
+            </summary>
+            <param name="queryId"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.getCategoryFilter">
+            <summary>
+            Returns the Category Filter
+            </summary>
+            <returns>categoryFilter.</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ISearchResultEvent.setCategoryFilter(System.String)">
+            <summary>
+            Sets the Category Filter
+            </summary>
+            <param name="categoryFilter"></param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.LoginEventDelegate">
+            <summary>
+            Delegate for LoginEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.LogoffEventDelegate">
+            <summary>
+            Delegate for LogoffEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.ManagedEventDelegate">
+            <summary>
+            Delegate for ManagedEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ManagedEventDelegate.setDelegatorValue(System.String,System.Object)">
+            <summary>
+            Sets a fact value
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.ManagedEventDelegate.getDelegatorValue(System.String)">
+            <summary>
+            Gets a fact value
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.PageViewEventDelegate">
+            <summary>
+            Delegate for PageViewEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.PortletUseEventDelegate">
+            <summary>
+            Delegate for PortletUseEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.PortletViewEventDelegate">
+            <summary>
+            Delegate for PortletViewEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.PortletViewEventDelegate.isErrPage">
+            <returns>true if it's collabolation document view</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.PortletViewEventDelegate.setErrPage(System.Boolean)">
+            <param name="boolean">bErrPage</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.PortletViewEventDelegate.isGwPage">
+            <returns>true if it's collabolation document view</returns>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.PortletViewEventDelegate.setGwPage(System.Boolean)">
+            <param name="boolean">bErrPage</param>
+        </member>
+        <member name="M:com.plumtree.analytics.openusage.PortletViewEventDelegate.getNonNullIntegerValue(System.Int32)">
+            <summary>
+            Returns the orignal Integer value or -1 if null
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.SearchEventDelegate">
+            <summary>
+            Delegate for SearchEvent
+            </summary>
+            <author><a href="mailto:james.hang@bea.com">James Hang</a></author>
+            <since>3.0</since>
+        </member>
+        <member name="T:com.plumtree.analytics.openusage.SearchResultEventDelegate">
+            <summary>
+            Created on March 21, 2006
+            </summary>
+            <author>JamesHa</author>
+        </member>
+    </members>
+</doc>

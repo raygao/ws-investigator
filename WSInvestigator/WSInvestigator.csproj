@@ -1,0 +1,279 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{93E96F79-AB48-4DD2-B464-FC15457C1E22}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>wssearch</RootNamespace>
+    <AssemblyName>Web Services Investigator</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <ApplicationIcon>Icon1.ico</ApplicationIcon>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>744B9108B49510878D543D7EE2E2378B3816355F</ManifestCertificateThumbprint>
+    <ManifestKeyFile>WSInvestigator_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <PublishUrl>http://localhost/Web Services Investigator/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <SupportUrl>https://wsinvestigator.projects.dev2dev.bea.com/</SupportUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>WS Investigator</ProductName>
+    <PublisherName>Raymond Gao</PublisherName>
+    <WebPage>install.htm</WebPage>
+    <ApplicationVersion>0.96.0.1</ApplicationVersion>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="dbutils, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\dbutils.dll</HintPath>
+    </Reference>
+    <Reference Include="DDTek.Oracle, Version=2.20.26.0, Culture=neutral, PublicKeyToken=c84cd5c63851e072">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\DDTek.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="DDTek.SQLServer, Version=2.20.25.1, Culture=neutral, PublicKeyToken=c84cd5c63851e072">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\DDTek.SQLServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.83.1.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="opencache, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\opencache.dll</HintPath>
+    </Reference>
+    <Reference Include="openconfig, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openconfig.dll</HintPath>
+    </Reference>
+    <Reference Include="opencounters, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\opencounters.dll</HintPath>
+    </Reference>
+    <Reference Include="opendb, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\opendb.dll</HintPath>
+    </Reference>
+    <Reference Include="openfoundation, Version=3.0.2.3, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openfoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="openhttp, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openhttp.dll</HintPath>
+    </Reference>
+    <Reference Include="openkernel, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openkernel.dll</HintPath>
+    </Reference>
+    <Reference Include="openkernelsearch, Version=0.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openkernelsearch.dll</HintPath>
+    </Reference>
+    <Reference Include="openkernelsearchimpl, Version=4.2.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openkernelsearchimpl.dll</HintPath>
+    </Reference>
+    <Reference Include="openlog-framework, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openlog-framework.dll</HintPath>
+    </Reference>
+    <Reference Include="opensharedcache, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\opensharedcache.dll</HintPath>
+    </Reference>
+    <Reference Include="opensslchannel, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\opensslchannel.dll</HintPath>
+    </Reference>
+    <Reference Include="opentempfile, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\opentempfile.dll</HintPath>
+    </Reference>
+    <Reference Include="openusage, Version=3.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openusage.dll</HintPath>
+    </Reference>
+    <Reference Include="openusage-api, Version=3.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openusage-api.dll</HintPath>
+    </Reference>
+    <Reference Include="openusage-impl, Version=3.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\openusage-impl.dll</HintPath>
+    </Reference>
+    <Reference Include="plumtreeserver, Version=6.1.1.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\plumtreeserver.dll</HintPath>
+    </Reference>
+    <Reference Include="pmb, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\pmb.dll</HintPath>
+    </Reference>
+    <Reference Include="portal, Version=6.1.1.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\portal.dll</HintPath>
+    </Reference>
+    <Reference Include="portalpages, Version=6.1.1.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\portalpages.dll</HintPath>
+    </Reference>
+    <Reference Include="pthome, Version=2.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\pthome.dll</HintPath>
+    </Reference>
+    <Reference Include="ptportalobjects, Version=6.1.1.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\ptportalobjects.dll</HintPath>
+    </Reference>
+    <Reference Include="ptrat, Version=1.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\PCS source files\ptproducts\IDK5.4\edk_dotnet\ptedk\5.4\devkit\bin\ptrat.dll</HintPath>
+    </Reference>
+    <Reference Include="searchAdminUI, Version=6.1.1.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bea\plumtree\ptportal\6.1\bin\assemblies\searchAdminUI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutWSInvestigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutWSInvestigator.Designer.cs">
+      <DependentUpon>AboutWSInvestigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="utility\CommunityInfoMgr.cs" />
+    <Compile Include="utility\CommunityPageInfoMgr.cs" />
+    <Compile Include="utility\CommunityDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="utility\CommunityPageDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="utility\MiscUtil.cs" />
+    <Compile Include="utility\PortletInfoMgr.cs" />
+    <Compile Include="utility\InfoMgr.cs" />
+    <Compile Include="utility\InfoMgrFactory.cs" />
+    <Compile Include="utility\PortletDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="utility\WSInfoMgr.cs" />
+    <Compile Include="utility\WSDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WSInvestigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WSInvestigator.Designer.cs">
+      <DependentUpon>WSInvestigator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutWSInvestigator.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutWSInvestigator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WSInvestigator.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WSInvestigator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\WSDataTable.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\liquid_ice.jpg" />
+    <None Include="WSInvestigator_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

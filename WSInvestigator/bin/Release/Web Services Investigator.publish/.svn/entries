@@ -1,0 +1,68 @@
+8
+
+dir
+89
+https://wsinvestigator.projects.dev2dev.bea.com/svn/wsinvestigator/trunk/src-wsinvestigator/WSInvestigator/bin/Release/Web%20Services%20Investigator.publish
+https://wsinvestigator.projects.dev2dev.bea.com/svn/wsinvestigator
+
+
+
+2007-07-06T16:51:05.915314Z
+64
+raygao
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+75517bc9-ff30-0410-8556-dc18182984ec
+
+setup.exe
+file
+
+
+
+
+2007-09-05T18:12:30.765625Z
+a0dde0356beb3e6ff3460e3b60e82fb8
+2007-07-06T16:51:05.915314Z
+64
+raygao
+has-props
+
+Web Services Investigator.application
+file
+
+
+
+
+2007-09-05T18:12:30.781250Z
+0d50eb0d61d9920b62c0b6936cd78797
+2007-07-06T16:51:05.915314Z
+64
+raygao
+
+Web Services Investigator_0_96_0_1
+dir
+
+install.htm
+file
+
+
+
+
+2007-09-05T18:12:30.796875Z
+6d09229616c909ffc1c143e8c38ace0b
+2007-07-06T16:51:05.915314Z
+64
+raygao
+
