@@ -1,4 +1,5 @@
-WS-Investigator (.Net / C# version) was developed by Raymond Gao, on a consulting project. It is a tool for showing detailed information abouts portal objects inside the Oracle Webcenter Interaction (aka. BEA Aqualogic / Plumtree) portal server. It supports following types of portal objects:
+==WS-Investigator (.Net / C# version) 
+This project was developed by Raymond Gao, on a consulting project. It is a tool for showing detailed information abouts portal objects inside the Oracle Webcenter Interaction (aka. BEA Aqualogic / Plumtree) portal server. It supports following types of portal objects:
 1. WebServices
 2. Portlets (aka PT Gadgets)
 3. AdminFolders
@@ -13,6 +14,7 @@ In fact, you can consider it as a headerless portal health analysis (e.g. for fo
 
 Furthermore, with a little tweaking, this project can be enhanced to show detailed information about just every types of the portal objects.
 
+==License
 It is released under the Apache 2 license. 
 see http://www.apache.org/licenses/LICENSE-2.0.html
 
